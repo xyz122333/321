@@ -1,0 +1,100 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("D:\HousingData.csv")
+
+df.head()
+
+df.tail()
+
+df.describe()
+
+df.dtypes
+
+df.info()
+
+df.isna().sum()
+
+mean_value = df['CRIM'].mean()
+
+means = df.mean()
+df.fillna(value=means, inplace=True)
+print(df.isnull().sum())
+
+target_feature = 'MEDV'
+x = df.drop(target_feature, axis=1)
+y = df[target_feature]
+
+x.head()
+
+y.head()
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=0)
+
+from sklearn.linear_model import LinearRegression
+regression = LinearRegression()
+
+regression.fit(x_train, y_train)
+
+train_score=round(regression.score(x_train,y_train)*100,2)
+print('Train score of Linear Regression:',train_score)
+
+print('Coefficients" ', regression.coef_)
+
+predictions = regression.predict(x_test)
+
+predictions = regression.predict(x_test)
+
+predictions
+
+plt.scatter(y_test, predictions)
+plt.xlabel('Y Test')
+plt.ylabel('Predicted Y')
+
+from sklearn.metrics import r2_score
+score = round(r2_score(y_test,predictions)*100,2)
+print("r_2 score:", score)
+
+round(regression.score(x_test, y_test)*100,2)
+
+df1 = pd.DataFrame({'Actual':y_test, 'Predicted':predictions, 'Variance':y_test-predictions})
+df1.head()
+
+df.head(15)
+
+regression.predict([[0.62976,0.0,8.14,0.0,0.538,5.949,61.8,4.7075,4,307,21.0,396.60,8.26]])
+
+regression.intercept_
+
+regression.coef_
+
+lr_coefficient = pd.DataFrame()
+lr_coefficient["columns"] = x_train.columns
+lr_coefficient['Coefficient Estimate'] = pd.Series(regression.coef_)
+print(lr_coefficient)
+
+fig, ax = plt.subplots(figsize =(20, 10))
+
+ax.bar(lr_coefficient["columns"],
+lr_coefficient['Coefficient Estimate'])
+
+ax.spines['bottom'].set_position('zero')
+
+plt.style.use('ggplot')
+plt.grid()
+plt.show()
+
+fig, ax = plt.subplots(figsize =(20, 10))
+
+color = ['tab:gray', 'tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:pink', 'tab:gray', 'tab:olive', 'tab:cyan', 'tab:orange', 'tab:green', 'tab:blue', 'tab:olive']
+
+ax.bar(lr_coefficient["columns"],
+lr_coefficient['Coefficient Estimate'],color = color)
+
+ax.spines['bottom'].set_position('zero')
+
+plt.style.use('ggplot')
+plt.show()
