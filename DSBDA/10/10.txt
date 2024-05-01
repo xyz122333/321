@@ -1,0 +1,59 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+Iris = pd.read_csv('Iris.csv')
+Iris
+
+Iris.shape
+
+Iris.describe()
+
+Iris.dtypes
+
+Iris.isnull().sum()
+
+print(Iris.groupby('Species').size())
+
+Iris.plot(kind='box', subplots=True, layout=(3,2), figsize=(8,12));
+
+Iris.hist(figsize=(12,12))
+plt.show()
+
+Iris.corr(numeric_only="True")
+
+sns.heatmap(Iris.corr(numeric_only="True"), annot=True, cmap='Wistia')
+
+sns.pairplot(Iris)
+
+from sklearn.datasets import load_iris
+import pandas as pd
+
+iris = load_iris()
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+iris_df['target'] = iris.target
+
+import matplotlib.pyplot as plt
+
+iris_df.hist()
+plt.show()
+
+iris_df.boxplot()
+plt.show()
+
+iris_df.describe()
+
+sns.boxplot(data=Iris, orient="h")
+plt.show()
+
+sns.boxplot(x = 'sepal width (cm)', data = iris_df)
+
+Q1 = Iris.SepalWidthCm.quantile(0.25)
+Q3 = Iris.SepalWidthCm.quantile(0.75)
+IQR = Q3-Q1
+print(IQR)
+
+data = Iris[Iris.SepalWidthCm < (Q1 - 1.5 * IQR) / (Iris.SepalWidthCm > (Q3 + 1.5 * IQR))]
+
+data
