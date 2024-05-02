@@ -105,7 +105,7 @@ sns.FacetGrid(iris, hue="Species", height=7).map(plt.scatter, "SepalLengthCm", "
 plt.show()
 
 setosa_data = iris[iris['Species'] == 'Iris-setosa']
-versicolor_data = iris[iris['Species'] == 'Iris-versicolor']
+ersicolor_data = iris[iris['Species'] == 'Iris-versicolor']
 
 setosa_data
 
@@ -117,7 +117,7 @@ setosa_stats = {
     'std_dev': np.std(setosa_data['SepalLengthCm'])
 }
 
-versicolor_stats = {
+ersicolor_stats = {
     'percentile': np.percentile(versicolor_data['SepalLengthCm'], 50),
     'mean': np.mean(versicolor_data['SepalLengthCm']),
     'std_dev': np.std(versicolor_data['SepalLengthCm'])
