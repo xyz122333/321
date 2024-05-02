@@ -3,7 +3,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("iris.data")
+df = pd.read_csv("D:\iris.csv")
 
 print("--------------Describe the Dataframe----------------------")
 print(df.describe())
@@ -22,7 +22,7 @@ print(df.tail())
 print("\n")
 
 print("--------------Mean of the First Column----------------------")
-print(df["5.1"].mean())
+print(df["SepalLengthCm"].mean())
 print("\n")
 
 print("--------------Histogram of the Dataframe (using 5 bins)----------------------")
@@ -52,8 +52,8 @@ print(df.quantile([0, 0.25, 0.5, 0.75, 1.0], numeric_only=True))
 print("\n")
 
 print("--------------Correlation of the Dataframe----------------------")
-iris_long = pd.melt(df, id_vars='5.1')
-ax = sns.boxplot(x="5.1", y="value", hue="variable", data=iris_long)
+iris_long = pd.melt(df, id_vars='SepalLengthCm')
+ax = sns.boxplot(x="SepalLengthCm", y="value", hue="variable", data=iris_long)
 plt.show()
 
 print("--------------Frequecy of each value in the first column----------------------")
